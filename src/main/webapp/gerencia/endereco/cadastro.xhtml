@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title" /></title>
+	<ui:insert name="resources" /> 
+	<h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+ 		<ui:define name="content">
+			<div class="card">
+			    <h:form>
+			        <p:breadCrumb>
+			            <p:menuitem value="Electronics" action="#{DashboardMB.goDashboard()}" />
+			            <p:menuitem value="Endereços" action="#{EnderecoMB.goListagemEndereco()}" />
+			            <p:menuitem value="Cadastro" action="#{EnderecoMB.goCadastroEndereco()}" />
+			            <!-- <p:menuitem value="Accessories"/>
+			            <p:menuitem value="Backpacks"/>
+			            <p:menuitem value="Item"/>  -->
+			        </p:breadCrumb>
+			    </h:form>
+			</div>
+			<br/>
+			<div class="ui-g" >
+				<div class="ui-g-4"></div>
+				<div class="ui-g-4">
+					<div class="card">
+						<h:form id="formCadastroEndereco">
+							<p:growl id="growl" showDetail="true" />
+       						<p:growl id="growl-sticky" for="sticky-key" showDetail="true"/>
+							<p:fieldset legend="Cadastro de Endereços" id="fieldEndereco">
+								<h:panelGrid columns="2" cellpadding="3" >
+									<p:outputLabel value="Rua: " for="rua"/>
+									<p:inputText id="rua" placeholder="Inserir rua"
+										value="#{EnderecoMB.endereco.rua}" size="30" required="true" 
+										requiredMessage="Informe a rua!">
+									</p:inputText>
+									
+									<p:outputLabel value="Cidade: " for="cidade"/>
+									<p:inputText id="cidade" placeholder="Inserir cidade"
+										value="#{EnderecoMB.endereco.cidade}" size="30" required="true" 
+										requiredMessage="Informe a cidade!">
+									</p:inputText>
+									
+									<p:outputLabel value="Estado:	" for="estado"/>
+						            <p:inputText id="estado" value="#{EnderecoMB.endereco.estado}" 
+						            	required="true" placeholder="Inserir estado" size="30" 
+						            	requiredMessage="Informe o estado!" maxlength="2">
+						            </p:inputText>
+									
+									<p:outputLabel value="CEP: " for="cep"/>
+									<p:inputMask id="cep" placeholder="Inserir CEP" maxlength="9"
+										value="#{EnderecoMB.endereco.cep}" mask="99999-999"
+                                		size="30" required="true" requiredMessage="Informe o CEP!">
+									</p:inputMask>
+									
+									<p:outputLabel value="Comentários: " for="comentario"/>
+									<p:inputTextarea id="comentario" placeholder="Inserir comentário"
+										 cols="32" value="#{EnderecoMB.endereco.comentario}" >
+									</p:inputTextarea>
+									<br/>
+								</h:panelGrid>
+								<div class="ui-g" style="display: inline-block;">
+									<div class="ui-g-3">
+										<p:commandButton value="Cancelar" action="#{EnderecoMB.goListagemEndereco()}" 
+			                 		 		styleClass="ui-button-secondary" style="margin-left: .5em; width: 8rem;">
+		                 		 		</p:commandButton>
+	                 		 		</div>
+	                 		 		<div class="ui-g-3"></div>
+	                 		 		<div class="ui-g-3"></div>
+									<div class="ui-g-3">
+										<p:commandButton value="Cadastrar" action="#{EnderecoMB.gravar()}" 
+			                 		 		actionListener="#{GrowlView.successCadastroEndereco}" update="growl" 
+			                 		 		style="width: 8rem; ">
+		                 		 		</p:commandButton>
+	                 		 		</div>
+	                 		 		
+                 		 		</div>
+							</p:fieldset>
+							
+						</h:form>
+					</div>
+				</div>
+				<div class="ui-g-4"></div>
+			</div>
+			
+			<script type="text/javascript" src="http://cidades-estados-js.googlecode.com/files/cidades-estados-v0.2.js"></script> 
+			<script type="text/javascript">
+			    window.onload = function() {
+			        new dgCidadesEstados( 
+			            document.getElementById('estado'), 
+			            document.getElementById('cidade'), 
+			            true
+			        );
+			    }
+			</script>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

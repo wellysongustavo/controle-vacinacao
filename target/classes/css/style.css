@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+#body-test {
+	height: 100%;
+}
+
+button.ui-button {
+   margin-right: .5rem;
+ }
+
+.order-table{   
+	border-collapse:collapse;
+	width: 80%;
+	text-align: center;
+	border: 1px solid #000000; 
+}
+
+.order-table-header{
+	background:none repeat scroll 0 0 #E5E5E5;
+	border: 1px solid #000000;
+	padding:16px;
+}
+
+.order-table-even-row{
+	background:none repeat scroll 0 0 #F9F9F9;
+	border: 1px solid #000000;
+}
+
+div.container {
+	height: 100%;
+}
+
+div.op1 {
+	width: 19.5%;
+	display: inline-block;
+}
+
+div.op2 {
+    width: 80%;
+    display: inline-block;
+	vertical-align: top;
+    padding: 1vw 0vw 0vw 0vw;
+}
+

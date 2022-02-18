@@ -33,10 +33,12 @@
         <property name="hbm2ddl.auto">update</property>
 		<!--	
         <mapping resource="org/hibernate/tutorial/domain/Event.hbm.xml"/>
-		
-		<mapping class="br.imd.biblioteca.dominio.Editora" />
-		<mapping class="br.imd.biblioteca.dominio.Livro" />
-		<mapping class="br.imd.biblioteca.dominio.Usuario" /> -->
+		 -->
+		<mapping class="br.imd.vacinacao.dominio.Usuario" />
+		<mapping class="br.imd.vacinacao.dominio.FabricanteVacina" />
+		<mapping class="br.imd.vacinacao.dominio.Endereco" />
+		<mapping class="br.imd.vacinacao.dominio.ProfissionalDeSaude" />
+    	<mapping class="br.imd.vacinacao.dominio.Paciente" />
     </session-factory>
 
 </hibernate-configuration>

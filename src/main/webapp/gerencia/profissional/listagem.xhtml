@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title" /></title>
+	<ui:insert name="resources" /> 
+	<h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+ 		<ui:define name="content">
+			<div class="card">
+			    <h:form>
+			        <p:breadCrumb>
+			            <p:menuitem value="Electronics" action="#{DashboardMB.goDashboard()}" />
+			            <p:menuitem value="Profissionais" action="#{ProfissionalMB.goListagemProfissional()}" />
+			            <!-- <p:menuitem value="Cadastro" action="#{FabricanteMB.goCadastroFabricante()}" />>
+			            <p:menuitem value="Accessories"/>
+			            <p:menuitem value="Backpacks"/>
+			            <p:menuitem value="Item"/>  -->
+			        </p:breadCrumb>
+			    </h:form>
+			</div>
+			<br/>
+			<div class="ui-g" >
+				
+					<h:form>
+					    <div class="card">
+					    <p:fieldset legend="Listagem de Profissionais" id="fieldProfissionais">
+					    	
+					        <p:dataTable var="prof" value="#{ProfissionalMB.getLista()}">
+					        	<p:growl id="growl" showDetail="true" />
+       							<p:growl id="growl-sticky" for="sticky-key" showDetail="true"/>
+					            <p:column headerText="Nome">
+					                <h:outputText value="#{prof.nome}" />
+					            </p:column>
+					
+					            <p:column headerText="Sobrenome">
+					                <h:outputText value="#{prof.sobrenome}" />
+					            </p:column>
+					
+					            <p:column headerText="CPF">
+					                <h:outputText value="#{prof.cpf}" />
+					            </p:column>
+					
+					            <p:column headerText="Email">
+					                <h:outputText value="#{prof.email}" />
+					            </p:column>
+					            
+					            <p:column headerText="Telefone">
+					                <h:outputText value="#{prof.telefone}" />
+					            </p:column>
+					            
+					            <p:column headerText="Profissão">
+					                <h:outputText value="#{prof.profissao}" />
+					            </p:column>
+					            
+					            <p:column headerText="Opções" style="text-align: center;">
+					                <p:commandButton icon="pi pi-pencil p-px-2" styleClass="ui-button-warning p-mr-2" 
+					                	action="#{ProfissionalMB.editar(prof)}"
+					                	style="margin-right: 10px;"/>
+				    				<p:commandButton icon="pi pi-trash p-px-2" styleClass="ui-button-danger p-mr-2" 
+				    					action="#{ProfissionalMB.apagar(prof)}" 
+				    					actionListener="#{GrowlView.successRemocaoProfissional}" update="growl" />
+					            </p:column>
+					        </p:dataTable>
+					    </p:fieldset>
+					    </div>
+					</h:form>
+				
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

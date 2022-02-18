@@ -36,7 +36,7 @@ public class Vacinacao implements Serializable {
 	private ProfissionalDeSaude ps;
 	
 	@Temporal(TemporalType.DATE)
-	private Date data_aplicacao;
+	private Date dataAplicacao;
 	
 	@Column(length = 50)
 	private String local;
@@ -73,12 +73,12 @@ public class Vacinacao implements Serializable {
 		this.ps = ps;
 	}
 
-	public Date getData_aplicacao() {
-		return data_aplicacao;
+	public Date getDataAplicacao() {
+		return dataAplicacao;
 	}
 
-	public void setData_aplicacao(Date data_aplicacao) {
-		this.data_aplicacao = data_aplicacao;
+	public void setDataAplicacao(Date dataAplicacao) {
+		this.dataAplicacao = dataAplicacao;
 	}
 
 	public String getLocal() {

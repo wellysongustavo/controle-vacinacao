@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Controle de Vacinação</title>
+        <h:outputStylesheet name="headerStyle.css" library="css" />
+		<ui:insert name="resources" />
+	</h:head>
+	
+	<h:body>
+		<div style="height: 620px">
+			<div class="p-shadow-3" style="height: 8%">
+				<ui:insert name="header">
+					<ui:include src="/templates/header.xhtml"></ui:include>
+				</ui:insert>
+			</div>
+			<div style="height: 90%">
+				<ui:insert name="content">
+					<ui:include src="/templates/content.xhtml"></ui:include>
+				</ui:insert>
+			</div>
+			<div style="height: 2%">
+	 			<ui:insert name="footer">
+	 				<ui:include src="/templates/footer.xhtml"></ui:include>
+ 				</ui:insert>
+	 		</div>
+	 	</div>
+	</h:body>
+</html>

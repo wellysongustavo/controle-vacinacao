@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title" /></title>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<ui:insert name="resources" /> 
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+ 		<ui:define name="content">
+			<div class="p-col-12" style="text-align: center;">
+				<div class="card">
+				    <p:steps activeIndex="1">
+				        <p:menuitem action="../index.xhtml" value="Escolha a área do sistema"/>
+				        <p:menuitem value="Login"/>
+				    </p:steps>
+				</div>
+				<br/>
+				<b><p:outputLabel value="Área de Gerência do Sistema" /></b>
+				<br/>
+				<p:outputLabel value="Informe suas credenciais para entrar no sistema" />
+				<br/><br/>
+		    	<h:form id="formLoginGerencia" style="display: inline-block;">
+	                <h:panelGrid cellspacing="10">          
+	                    <p:growl id="growl" showDetail="true" />
+	        			<p:growl id="growl-sticky" for="sticky-key" showDetail="true"/>
+	                    <p:inputText placeholder="Login" value="#{LoginMB.usuario.login}" size="30" 
+	                    	requiredMessage="Informe o login!" required="true" />
+	                    <p:password placeholder="Senha" value="#{LoginMB.usuario.senha}" size="30" 
+	                    	requiredMessage="Informe a senha!" required="true" />
+                 		 
+                 		 <p:commandButton value="Entrar" action="#{LoginMB.validaLogin}" 
+                 		 	actionListener="#{GrowlView.showWarn}" update="growl" 
+                 		 	styleClass="p-mr-2" style="width: 8rem"></p:commandButton>	    	
+	                    
+	                </h:panelGrid>
+	            </h:form>
+    		</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

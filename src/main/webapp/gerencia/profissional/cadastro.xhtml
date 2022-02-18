@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title" /></title>
+	<ui:insert name="resources" /> 
+	<h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+ 		<ui:define name="content">
+			<div class="card">
+			    <h:form>
+			        <p:breadCrumb>
+			            <p:menuitem value="Electronics" action="#{DashboardMB.goDashboard()}" />
+			            <p:menuitem value="Profissionais" action="#{ProfissionalMB.goListagemProfissional()}" />
+			            <p:menuitem value="Cadastro" action="#{ProfissionalMB.goCadastroProfissional()}" />
+			            <!-- <p:menuitem value="Accessories"/>
+			            <p:menuitem value="Backpacks"/>
+			            <p:menuitem value="Item"/>  -->
+			        </p:breadCrumb>
+			    </h:form>
+			</div>
+			<br/>
+			<div class="ui-g" >
+				<div class="ui-g-4"></div>
+				<div class="ui-g-4">
+					<div class="card">
+						<h:form id="formCadastroProfissional">
+							<p:growl id="growl" showDetail="true" />
+       						<p:growl id="growl-sticky" for="sticky-key" showDetail="true"/>
+							<p:fieldset legend="Cadastro de Profissionais" id="fieldProfissional">
+								<h:panelGrid columns="2" cellpadding="3" >
+									<p:outputLabel value="Nome: " for="nome"/>
+									<p:inputText id="nome" placeholder="Inserir nome"
+										value="#{ProfissionalMB.profissional.nome}" size="30" required="true" 
+										requiredMessage="Informe o nome!">
+									</p:inputText>
+									
+									<p:outputLabel value="Sobrenome: " for="sobrenome"/>
+									<p:inputText id="sobrenome" placeholder="Inserir sobrenome"
+										value="#{ProfissionalMB.profissional.sobrenome}" size="30" required="true" 
+										requiredMessage="Informe o sobrenome!">
+									</p:inputText>
+									
+									<p:outputLabel value="CPF:	" for="cpf"/>
+						            <p:inputMask id="cpf" value="#{ProfissionalMB.profissional.cpf}" 
+						            	required="true" placeholder="Inserir cpf" size="30" 
+						            	requiredMessage="Informe o cpf!" mask="999.999.999-99">
+						            </p:inputMask>
+									
+									<p:outputLabel value="Email: " for="email"/>
+									<p:inputText id="email" placeholder="Inserir email"
+										value="#{ProfissionalMB.profissional.email}" 
+                                		size="30" required="true" requiredMessage="Informe o email!">
+									</p:inputText>
+									
+									<p:outputLabel value="Telefone: " for="telefone"/>
+									<p:inputMask id="telefone" placeholder="Inserir telefone"
+										 cols="32" mask="(99) 99999-9999" required="true" 
+										 requiredMessage="Informe o telefone!"
+										 value="#{ProfissionalMB.profissional.telefone}" >
+									</p:inputMask>
+									
+									<p:outputLabel value="Profissão: " for="profissao"/>
+									<p:inputText id="profissao" placeholder="Inserir profissão"
+										value="#{ProfissionalMB.profissional.profissao}" 
+                                		size="30" required="true" requiredMessage="Informe a profissão!">
+									</p:inputText>
+									<br/>
+								</h:panelGrid>
+								<div class="ui-g" style="display: inline-block;">
+									<div class="ui-g-3">
+										<p:commandButton value="Cancelar" action="#{ProfissionalMB.goListagemProfissional()}" 
+			                 		 		styleClass="ui-button-secondary" style="margin-left: .5em; width: 8rem;">
+		                 		 		</p:commandButton>
+	                 		 		</div>
+	                 		 		<div class="ui-g-3"></div>
+	                 		 		<div class="ui-g-3"></div>
+									<div class="ui-g-3">
+										<p:commandButton value="Cadastrar" action="#{ProfissionalMB.gravar()}" 
+			                 		 		actionListener="#{GrowlView.successCadastroProfissional}" update="growl" 
+			                 		 		style="width: 8rem; ">
+		                 		 		</p:commandButton>
+	                 		 		</div>
+	                 		 		
+                 		 		</div>
+							</p:fieldset>
+							
+						</h:form>
+					</div>
+				</div>
+				<div class="ui-g-4"></div>
+			</div>
+		
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

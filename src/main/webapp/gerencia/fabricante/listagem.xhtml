@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title" /></title>
+	<ui:insert name="resources" /> 
+	<h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+ 		<ui:define name="content">
+			<div class="card">
+			    <h:form>
+			        <p:breadCrumb>
+			            <p:menuitem value="Electronics" action="#{DashboardMB.goDashboard()}" />
+			            <p:menuitem value="Fabricantes" action="#{FabricanteMB.goListagemFabricante()}" />
+			            <!-- <p:menuitem value="Cadastro" action="#{FabricanteMB.goCadastroFabricante()}" />>
+			            <p:menuitem value="Accessories"/>
+			            <p:menuitem value="Backpacks"/>
+			            <p:menuitem value="Item"/>  -->
+			        </p:breadCrumb>
+			    </h:form>
+			</div>
+			<br/>
+			<div class="ui-g" >
+					<h:form>
+					    <div class="card">
+					    <p:fieldset legend="Listagem de Fabricantes de Vacina" id="fieldFabricante">
+					    	
+					        <p:dataTable var="fv" value="#{FabricanteMB.getLista()}">
+					        	<p:growl id="growl" showDetail="true" />
+       							<p:growl id="growl-sticky" for="sticky-key" showDetail="true"/>
+					            <p:column headerText="Descrição">
+					                <h:outputText value="#{fv.descricao}" />
+					            </p:column>
+					
+					            <p:column headerText="Lote">
+					                <h:outputText value="#{fv.lote}" />
+					            </p:column>
+					
+					            <p:column headerText="Validade">
+					                <h:outputText value="#{fv.validade}" />
+					            </p:column>
+					
+					            <p:column headerText="Estoque de Vacinas">
+					                <h:outputText value="#{fv.quantidade}" />
+					            </p:column>
+					            
+					            <p:column headerText="Vacinas Aplicadas">
+					                <h:outputText value="#{fv.quantidade}" />
+					            </p:column>
+					            
+					            <p:column headerText="Opções" style="text-align: center;">
+					                <p:commandButton icon="pi pi-pencil p-px-2" styleClass="ui-button-warning p-mr-2" 
+					                	action="#{FabricanteMB.editar(fv)}"
+					                	style="margin-right: 10px;"/>
+				    				<p:commandButton icon="pi pi-trash p-px-2" styleClass="ui-button-danger p-mr-2" 
+				    					action="#{FabricanteMB.apagar(fv)}" 
+				    					actionListener="#{GrowlView.successRemocaoFabricante}" update="growl" />
+					            </p:column>
+					        </p:dataTable>
+					    </p:fieldset>
+					    </div>
+					</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

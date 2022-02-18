@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -42,7 +43,8 @@ public class Paciente implements Serializable{
 	@Column(length = 20)
 	private String telefone;
 	
-	@Embedded
+	@OneToOne
+	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	
 	public Paciente(String nome, String sobrenome, String cpf, String rg,  
@@ -127,8 +129,4 @@ public class Paciente implements Serializable{
 				&& Objects.equals(sobrenome, other.sobrenome);
 	}
 	
-	
-	
-	
-
 }

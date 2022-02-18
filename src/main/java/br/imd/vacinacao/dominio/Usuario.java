@@ -10,10 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-@Entity  //a classe vai representar uma tabela no banco
-@Table(name = "cidade")
-public class Cidade implements Serializable{
+@Entity
+@Table(name = "usuario")
+public class Usuario implements Serializable{
 
 	/**
 	 * 
@@ -24,14 +23,19 @@ public class Cidade implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 40, nullable = false)
-	private String nome;
+	@Column(length = 30, nullable = false)
+	private String login;
 	
-	public Cidade(String nome) {
+	@Column(nullable = false)
+	private String senha;
+
+	
+	public Usuario(String login, String senha) {
 		super();
-		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
 	}
-	public Cidade() {
+	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,15 +45,21 @@ public class Cidade implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public String getLogin() {
+		return login;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nome);
+		return Objects.hash(id, login, senha);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -59,9 +69,12 @@ public class Cidade implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
+		Usuario other = (Usuario) obj;
+		return Objects.equals(id, other.id) && Objects.equals(login, other.login) && Objects.equals(senha, other.senha);
 	}
+	
+	
+	
 	
 	
 

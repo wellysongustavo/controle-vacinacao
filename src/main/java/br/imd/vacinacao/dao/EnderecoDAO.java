@@ -1,8 +1,8 @@
 package br.imd.vacinacao.dao;
 
-import br.imd.vacinacao.dominio.Estado;
+import br.imd.vacinacao.dominio.Endereco;
 
-public class EstadoDAO extends GenericDAO<Estado>{
+public class EnderecoDAO extends GenericDAO<Endereco>{
 
 	/**
 	 * 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Bem vindo(a)!</title>
+		<ui:insert name="resources" />
+		<h:outputStylesheet library="webjars" name="primeflex/3.0.1/primeflex.min.css" />
+		
+	</h:head>
+	
+	<h:body>
+ 		<ui:composition template="/templates/template.xhtml">
+ 			<ui:define name="content">
+		        <div class="card">
+				    <p:steps>
+				        <p:menuitem value="Escolha a área do sistema"/>
+				        <p:menuitem value="Login"/>
+				    </p:steps>
+				</div>
+			    <br/><br/>
+			    <div class="ui-g" style="text-align: center;">
+				    <div class="ui-g-3"></div>
+				    <div class="ui-g-3">
+				    	<a href="paciente/login.xhtml">
+							<h:graphicImage value="/resources/images/logo.png" style="width: 150px;" /><br/><br/>
+			            	Paciente
+		            	</a>
+			    	</div>
+				    <div class="ui-g-3">
+				    	<a href="gerencia/login.xhtml">
+						<h:graphicImage value="/resources/images/logo-gerencia.png" style="width: 150px;" /><br/><br/>
+			            	Gerência
+		            	</a>
+			    	</div>
+				    <div class="ui-g-3"></div>
+				</div>
+			    
+ 			</ui:define>
+ 		</ui:composition>
+	</h:body>
+	
+</html>

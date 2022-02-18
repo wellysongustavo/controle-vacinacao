@@ -2,13 +2,21 @@ package br.imd.vacinacao.dominio;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Embeddable //firma a ligação dos atributos da classe endereco a uma outra classe (Clientes) que é uma tabela
+@Entity
+@Table(name = "endereco")
 public class Endereco implements Serializable{
 
 	/**
@@ -16,15 +24,15 @@ public class Endereco implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	//Relacionamento 1 -> 1
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
-	@OneToOne
-	@JoinColumn(name = "id_cidade")
-	private Cidade cidade;
+	@Column 
+	private String cidade;
 	
-	@OneToOne
-	@JoinColumn(name = "id_estado")
-	private Estado estado;
+	@Column(length = 2)
+	private String estado;
 	
 	@Column(length = 10)
 	private String cep;
@@ -35,7 +43,19 @@ public class Endereco implements Serializable{
 	@Column(length = 50)
 	private String comentario;
 	
-	public Endereco(Cidade cidade, Estado estado, String cep, String rua) {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "paciente_id")
+	private Set<Paciente> pacientes;
+	
+	public Endereco(String cidade, String estado, String cep, String rua, String comentario) {
+		super();
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.rua = rua;
+		this.comentario = comentario;
+	}
+	public Endereco(String cidade, String estado, String cep, String rua) {
 		super();
 		this.cidade = cidade;
 		this.estado = estado;
@@ -46,16 +66,23 @@ public class Endereco implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Cidade getCidade() {
+	
+	public Integer getId() {
+		return id;
+	}	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getCidade() {
 		return cidade;
 	}
-	public void setCidade(Cidade cidade) {
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	public Estado getEstado() {
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(Estado estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	public String getCep() {
@@ -75,6 +102,12 @@ public class Endereco implements Serializable{
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	public Set<Paciente> getPacientes() {
+		return pacientes;
+	}
+	public void setPacientes(Set<Paciente> pacientes) {
+		this.pacientes = pacientes;
 	}
 	@Override
 	public int hashCode() {

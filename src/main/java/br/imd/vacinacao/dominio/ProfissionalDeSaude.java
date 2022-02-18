@@ -45,11 +45,11 @@ public class ProfissionalDeSaude implements Serializable{
 			String email, String telefone, String profissao) {
 		super();
 		this.nome = nome;
-		this.sobrenome = sobrenome;
+		this.setSobrenome(sobrenome);
 		this.cpf = cpf;
 		this.email = email;
 		this.telefone = telefone;
-		this.profissao = profissao;
+		this.setProfissao(profissao);
 	}
 	public ProfissionalDeSaude() {
 		super();
@@ -66,6 +66,12 @@ public class ProfissionalDeSaude implements Serializable{
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getSobrenome() {
+		return sobrenome;
+	}
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 	public String getCpf() {
 		return cpf;
@@ -84,6 +90,12 @@ public class ProfissionalDeSaude implements Serializable{
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	public String getProfissao() {
+		return profissao;
+	}
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
 	}
 	
 
